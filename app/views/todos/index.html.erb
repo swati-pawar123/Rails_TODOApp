@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Todo App</h1>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>TASK</th>
+      <th>ACTION</th>
+      <th>ACTION</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <% if todo.completed %>
+            <tr class="table-secondary">
+              <td><strike><%= todo.task %></strike></td>
+              <td><%= link_to 'Edit', edit_todo_path(todo),class: 'btn btn-outline-primary disabled' %></td>
+              <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-outline-danger' %></td>
+            </tr>
+      <% else %>
+              <tr class="table-warning">
+              <td><%= todo.task %></td>
+              <td><%= link_to 'Edit', edit_todo_path(todo),class: 'btn btn-outline-primary' %></td>
+              <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-outline-danger' %></td>
+              </tr>
+            <% end %>  
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<%= render 'form', todo: @todo %>
+
